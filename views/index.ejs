@@ -1,0 +1,76 @@
+<html lang="en">
+    <head>
+        <meta charset ="UTF-8">
+        <meta hhtp-equiv="X-UA-Compatible" content="IE-Change">
+        <meta name="viewport" content="width=device-device, initial-scale=1.0">
+        <title>Tabel</title>
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <body>
+
+            <section class="section">
+                <div class="container">
+
+                            <div class="card">
+                                  
+                                <table class="table is-fullwidth is-hoverable" table id="tabel">
+                                  <thead>
+                                    <tr>
+                                      <th>Jrk</th>
+                                      <th>Eesnimi</th>
+                                      <th>Perekonnanimi</th>
+                                      <th>Sugu</th>
+                                      <th>Sünniaeg</th>
+                                      <th>Riik</th>
+                                      <th>Ettevõte</th>
+                                      <th>Email</th>
+                                      <th>Värv</th>
+                                    </tr>
+                                  </thead>
+                                
+                                  <tbody>
+                                    <% let a = 1; %>
+                                    <% for(let data of datas['objects']) { %>
+                                      
+                                      <tr class="clickable" style="cursor: pointer"
+                                     onclick="window.location='<%= data.ID %>'">
+                                      <td class="has-text-centered"><%= a %>.</td>
+                                      <td class="has-text-centered"><%= data.Firstname %></td>
+                                      <td class="has-text-centered"><%= data.Lastname %></td>
+                                      <td class="has-text-centered"><%= data.Gender %></td>
+                                      <td class="has-text-centered"><%= myfuncs.convertDate(data.Birthdate) %></td>
+                                      <td class="has-text-centered"><%= data.Country %></td>
+                                      <td class="has-text-centered"><%= data.Company %></td>
+                                      <td class="has-text-centered"><% if (myfuncs.z(data.Company) === '0') { %>
+                                         <%= data.Firstname.toLowerCase() %>.<%= data.Lastname.toLowerCase() %>@<%= (myfuncs.convertComp(data.Company)).toLowerCase() %>.com
+                                      <% } else {  %>
+                                        <%= data.Company %>
+                                      <% } %>
+                                    </td>
+                                      <td class="box" style = "background-color : <%= data.Color %>"><%= data.Color.toUpperCase() %></td>
+                                    </tr>
+                                    <% a += 1; %>
+                                    <% }; %>
+                                  </tbody>
+                                    <tfoot>
+                              </div>
+                        </div>
+
+                        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+                        
+                        <script type="text/javascript">
+                          $(document).ready(function() {
+    $('#tabel').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
+} );
+                      </script>
+                  
+                </div>
+            </section>
+            
+        </body>
+    </head>
+</html>

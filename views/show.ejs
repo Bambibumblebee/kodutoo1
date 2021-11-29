@@ -1,0 +1,8 @@
+<%- include('../partials/head'); %> 
+    <h1>Isiku ID: <%= data.ID %> info</h1>
+
+                     
+ <p> <%= data.Firstname %> - <%= data.Lastname %> - <%= data.Gender %> - <%= myfuncs.convertDate(data.Birthdate) %> -<%= data.Country %></p>
+
+
+ <%- include('../partials/footer'); %> 
